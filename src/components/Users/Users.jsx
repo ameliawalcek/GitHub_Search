@@ -1,14 +1,41 @@
-import React, {useContext} from 'react'
-import { LoadingContext, SearchContext } from '../../contexts'
+import React, { useContext } from 'react'
+import { SearchContext, PageContext } from '../../contexts'
 import { User } from './User/User'
+import './style.css'
+import Pagination from '@material-ui/lab/Pagination';
+import { PaginationItem } from '@material-ui/lab'
+import { makeStyles } from '@material-ui/core'
 
 export const Users = () => {
     const search = useContext(SearchContext)
-    console.log(search.users.users)
+    const page = useContext(PageContext)
+
+    const handleChange = (_, value) => page.setPage(value)
+
+    const useStyles = makeStyles((theme) => ({
+        selected: {
+            backgroundColor: 'transparent',
+            color: 'rgba(81, 203, 238, 1)',
+        },
+    }),
+    )
+
+    const classes = useStyles()
 
     return (
-        <div>
-            {search.users.users.map(user => <User key={user.id} user={user}/>)}
-        </div>
+        <>
+            {(search.users.users.length > 1)
+                && <Pagination
+                    onChange={handleChange}
+                    page={page.page}
+                    count={10}
+                    style={{ placeContent: 'center' }}
+                    renderItem={(item) => <PaginationItem {...item}
+                        classes={{ selected: classes.selected }} />}
+                />}
+            <div className='container'>
+                {search.users.users.map(user => <User key={user.id} user={user} />)}
+            </div>
+        </>
     )
 }

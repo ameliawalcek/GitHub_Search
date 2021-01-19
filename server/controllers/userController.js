@@ -10,9 +10,21 @@ class UserController {
         this.token = GITHUB_TOKEN
     }
 
-    async getUsers(query) {
+    async getUsers(query, page) {
         try {
-            return (await axios.get(`${this.baseUrl}/search/users?q=${query}&token=${this.key}`)).data
+            return (await axios.get(`${this.baseUrl}/search/users?q=${query}&page=${page}`, {
+                headers: { 'Authorization': `token ${this.token}` }
+            })).data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async getUser(name) {
+        try {
+            return (await axios.get(`${this.baseUrl}/users/${name}`, {
+                headers: { 'Authorization': `token ${this.token}` }
+            })).data
         } catch (error) {
             console.log(error)
         }

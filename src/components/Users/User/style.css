@@ -1,0 +1,29 @@
+.avatar{
+    width: 45px;
+    border-radius: 50%;
+    justify-self: left;
+    margin-left: 6px;
+    border: 2px solid #1d1d1d
+}
+
+.main-content{
+    display: grid;
+    grid-template-columns: .38fr 1fr;
+    align-items: center;
+    height: 60px;
+}
+
+.card{
+    width: 100%;
+    display: table;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9)
+}
+
+.user-name{
+    font-size: 20px;
+}
+
+.expand{
+    text-align: center;
+    color: #6e6e6e;
+}

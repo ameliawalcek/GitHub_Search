@@ -1,34 +1,53 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import * as api from '../../api'
-import { LoadingContext, SearchContext, ErrorContext } from '../../contexts'
+import { LoadingContext, SearchContext, ErrorContext, PageContext } from '../../contexts'
+import './style.css'
 
 export const Search = () => {
-    const [input, setInput] = useState('')
     const search = useContext(SearchContext)
     const loading = useContext(LoadingContext)
     const errorMessage = useContext(ErrorContext)
+    const page = useContext(PageContext)
+
+    const [input, setInput] = useState('')
     const inputRef = useRef(null)
+    const prevInput = useRef('')
+
+    useEffect(() => inputRef.current.focus())
 
     const handleChange = ({ target }) => setInput(target.value)
 
-    useEffect(() => {
-        inputRef.current.focus()
-    })
-
-    const handleSearch = async () => {
+    const searchUsers = async (query) => {
         loading.setLoading(true)
-        const response = await api.getUsers(input)
-        setInput('')
-        loading.setLoading(false)
-        console.log(response.data)
+        errorMessage.setError(false)
+        search.setUsers({})
 
-        if (!response.total) {
+        const response = await api.getUsers(query, page.page)
+        const { users, total } = response.data
+
+        if (!users.length) {
             errorMessage.setError(true)
         } else {
-            const { users, total } = response.data
             search.setUsers({ users, total })
         }
+        loading.setLoading(false)
     }
+
+    const handleSearch = async (e) => {
+        if (e.keyCode === 13) {
+            prevInput.current = input
+            setInput('')
+            searchUsers(input.split(' ').join(''))
+        }
+    }
+
+    useEffect(() => {
+        if (page.page > 1) {
+            console.log(page.page)
+            searchUsers(prevInput.current)
+            console.log(prevInput.current)
+        }
+    }, [page.page])
 
     return (
         <div>
@@ -37,9 +56,9 @@ export const Search = () => {
                 placeholder='Search users...'
                 value={input}
                 onChange={handleChange}
+                onKeyDown={handleSearch}
                 ref={inputRef}
             />
-            <button onClick={handleSearch}>Search</button>
         </div>
     )
 }
