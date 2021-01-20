@@ -1,11 +1,13 @@
 # Search GitHub Users
 
 Frontend application using the GitHub API
+<br/>
+React, JavaScript, React hooks, Express, & Axios
 <br/><br/>
 .env<br/>
 GITHUB_TOKEN=
 
-### Start user search with Loading screen
+### Start user search with loading screen
 <img src="https://i.ibb.co/tc7shgm/Loading.png" alt="Loading" border="0" height="300px">
 
 ### View GitHub users and their details
