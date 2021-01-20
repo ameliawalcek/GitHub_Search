@@ -19,7 +19,7 @@ const App = () => {
           <ErrorContext.Provider value={{ error, setError }}>
             <PageContext.Provider value={{ page, setPage }}>
               <div className='heading'>
-                <img className='header-img' src={image} />
+                <img className='header-img' src={image} alt='logo'/>
                 <Search />
               </div>
               {users.users && (!error.length) && <Users />}

@@ -1,26 +1,14 @@
 import React, { useContext } from 'react'
 import { SearchContext, PageContext } from '../../contexts'
 import { User } from './User/User'
-import './style.css'
-import Pagination from '@material-ui/lab/Pagination';
-import { PaginationItem } from '@material-ui/lab'
-import { makeStyles } from '@material-ui/core'
+import { PaginationItem, Pagination } from '@material-ui/lab'
+import { useStyles } from './styles'
 
 export const Users = () => {
+    const classes = useStyles()
     const search = useContext(SearchContext)
     const page = useContext(PageContext)
-
     const handleChange = (_, value) => page.setPage(value)
-
-    const useStyles = makeStyles((theme) => ({
-        selected: {
-            backgroundColor: 'transparent',
-            color: 'rgba(81, 203, 238, 1)',
-        },
-    }),
-    )
-
-    const classes = useStyles()
 
     return (
         <>
@@ -33,7 +21,7 @@ export const Users = () => {
                     renderItem={(item) => <PaginationItem {...item}
                         classes={{ selected: classes.selected }} />}
                 />}
-            <div className='container'>
+            <div className={classes.container}>
                 {search.users.users.map(user => <User key={user.id} user={user} />)}
             </div>
         </>
