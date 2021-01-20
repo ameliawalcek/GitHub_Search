@@ -40,7 +40,7 @@ GITHUB_TOKEN=
 	</thead>
 	<tr>
 		<td>
-      <img src="https://i.ibb.co/vQt1sdZ/Pagination.png" alt="Pagination" border="0"  height="475px">
+		<img src="https://i.ibb.co/bL74QLm/Pagination.png" alt="Pagination" border="0" height="475px">
 		</td>
 		<td>
       <img src="https://i.ibb.co/58WFgqk/Responsive.png" alt="Responsive" border="0"  height="475px">
