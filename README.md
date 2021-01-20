@@ -1,6 +1,6 @@
 # Search GitHub Users
 
-Frontend application using the GitHub API
+<b>Frontend React application using the GitHub API</b>
 <br/>
 React, JavaScript, React hooks, Express, & Axios
 <br/><br/>
