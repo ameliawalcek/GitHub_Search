@@ -4,7 +4,7 @@ export const Error = () => {
 
     return (
         <div>
-            we have error
+            There was an issue
         </div>
     )
 }
