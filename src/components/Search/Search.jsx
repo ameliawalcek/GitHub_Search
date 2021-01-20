@@ -42,11 +42,7 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        if (page.page > 1) {
-            console.log(page.page)
-            searchUsers(prevInput.current)
-            console.log(prevInput.current)
-        }
+        if (page.page > 1) searchUsers(prevInput.current)
     }, [page.page])
 
     return (
@@ -55,9 +51,9 @@ export const Search = () => {
                 type="text"
                 placeholder='Search users...'
                 value={input}
+                ref={inputRef}
                 onChange={handleChange}
                 onKeyDown={handleSearch}
-                ref={inputRef}
             />
         </div>
     )

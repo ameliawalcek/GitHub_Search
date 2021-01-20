@@ -7,9 +7,9 @@ import { Users } from './components/Users/Users'
 import Loading from './components/Loading/Loading'
 
 const App = () => {
-  const [users, setUsers] = useState({})
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [users, setUsers] = useState({})
   const [page, setPage] = useState(1)
 
   return (
