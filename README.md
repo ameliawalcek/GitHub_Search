@@ -1,4 +1,4 @@
-# Search GitHub Users
+# GitHub User Search
 
 <b>Frontend React application using the GitHub API</b>
 <br/>
