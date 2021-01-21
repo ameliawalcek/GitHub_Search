@@ -46,6 +46,7 @@
 .expand{
     text-align: center;
     color: #6e6e6e;
+    cursor: pointer;
 }
 
 .more-info{

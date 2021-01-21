@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import * as api from '../../../api'
 import './style.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import LocationOnIcon from '@material-ui/icons/LocationOn'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import PeopleIcon from '@material-ui/icons/People'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
 import EmailIcon from '@material-ui/icons/Email'
 
 export const User = ({ user }) => {

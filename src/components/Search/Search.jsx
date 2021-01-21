@@ -4,10 +4,10 @@ import { LoadingContext, SearchContext, ErrorContext, PageContext } from '../../
 import './style.css'
 
 export const Search = () => {
-    const search = useContext(SearchContext)
-    const loading = useContext(LoadingContext)
-    const errorMessage = useContext(ErrorContext)
-    const page = useContext(PageContext)
+    const { setUsers } = useContext(SearchContext)
+    const { setLoading } = useContext(LoadingContext)
+    const { setError } = useContext(ErrorContext)
+    const { page } = useContext(PageContext)
 
     const [input, setInput] = useState('')
     const inputRef = useRef(null)
@@ -18,19 +18,19 @@ export const Search = () => {
     const handleChange = ({ target }) => setInput(target.value)
 
     const searchUsers = async (query) => {
-        loading.setLoading(true)
-        errorMessage.setError(false)
-        search.setUsers({})
+        setLoading(true)
+        setError(false)
+        setUsers({})
 
-        const response = await api.getUsers(query, page.page)
+        const response = await api.getUsers(query, page)
         const { users, total } = response.data
 
         if (!users.length) {
-            errorMessage.setError(true)
+            setError(true)
         } else {
-            search.setUsers({ users, total })
+            setUsers({ users, total })
         }
-        loading.setLoading(false)
+        setLoading(false)
     }
 
     const handleSearch = async (e) => {
@@ -42,8 +42,8 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        if (page.page > 1) searchUsers(prevInput.current)
-    }, [page.page])
+        if (page > 1) searchUsers(prevInput.current)
+    }, [page])
 
     return (
         <div>
